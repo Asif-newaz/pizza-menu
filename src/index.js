@@ -67,12 +67,22 @@ function Header() {
 
 function Menu() {
   return (
-    <div className="menu">
-      <h1>Our Menu</h1>
+    <main className="menu">
+      <h2>Our Menu</h2>
+      <Pizza
+        name="Pizza Spinaci"
+        ingredient="Tomato, mozarella, spinach, and ricotta cheese"
+        photoName="pizzas/spinaci.jpg"
+        price={10}
+      />
+      <Pizza
+        name="Pizza Funghi"
+        ingredient="Tomato, mozarella, mushrooms, and onion"
+        photoName="pizzas/funghi.jpg"
+        price={12}
+      />
       <Pizza />
-      <Pizza />
-      <Pizza />
-    </div>
+    </main>
   );
 }
 
@@ -88,17 +98,24 @@ function Footer() {
   // }
 
   return (
-    <footer className="footer">{new Date().toLocaleTimeString()} We're currently open!</footer>
+    <footer className="footer">
+      {new Date().toLocaleTimeString()} We're currently open!
+    </footer>
   );
   // return React.createElement("footer", null, "We're currently open!");
 }
 
-function Pizza() {
+function Pizza(props) {
+  console.log(props);
+
   return (
-    <div>
-      <img src="pizzas/spinaci.jpg" alt="" />
-      <h1>Pizza Spinaci</h1>
-      <p>Tomato, mozarella, spinach, and ricotta cheese</p>
+    <div className="pizza">
+      <img src={props.photoName} alt={props.name} />
+      <div>
+        <h3>{props.name}</h3>
+        <p>{props.ingredient}</p>
+        <span>{props.price + 3}</span>
+      </div>
     </div>
   );
 }
