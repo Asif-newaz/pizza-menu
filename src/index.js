@@ -83,25 +83,14 @@ function Menu() {
       ) : (
         <p>We're still working on our menu. Please come back later :)</p>
       )}
-
-      {/* <Pizza
-        name="Pizza Spinaci"
-        ingredient="Tomato, mozarella, spinach, and ricotta cheese"
-        photoName="pizzas/spinaci.jpg"
-        price={10}
-      />
-      <Pizza
-        name="Pizza Funghi"
-        ingredient="Tomato, mozarella, mushrooms, and onion"
-        photoName="pizzas/funghi.jpg"
-        price={12}
-      /> */}
     </main>
   );
 }
 
 function Pizza(props) {
   console.log(props);
+
+  if (props.pizzaObj.soldOut) return null;
 
   return (
     <li className="pizza">
@@ -117,18 +106,14 @@ function Pizza(props) {
 
 function Footer() {
   const hour = new Date().getHours();
-  console.log(hour);
   const openHour = 23;
   const closeHour = 20;
 
   const isOpen = hour >= openHour && hour <= closeHour;
-  console.log(isOpen);
 
-  // if (hour >= openHour && hour <= closeHour) {
-  //   alert("We're currently open!");
-  // } else {
-  //   alert("Sorry we're closed");
-  // }
+  if (!isOpen) {
+    return <p>CLOSED!</p>;
+  }
 
   return (
     <footer className="footer">
@@ -146,7 +131,6 @@ function Footer() {
       </div>
     </footer>
   );
-  // return React.createElement("footer", null, "We're currently open!");
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
