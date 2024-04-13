@@ -107,7 +107,8 @@ function Pizza(props) {
 function Footer() {
   const hour = new Date().getHours();
   const openHour = 23;
-  const closeHour = 20;
+  const closeHour = 24;
+  console.log(hour);
 
   const isOpen = hour >= openHour && hour <= closeHour;
 
@@ -119,9 +120,7 @@ function Footer() {
     <footer className="footer">
       <div className="order">
         {isOpen ? (
-          <p>
-            We're open until {closeHour}:00. Come visit us and order online.
-          </p>
+          <Order closeHour={closeHour} />
         ) : (
           <p>
             We're happy to welcome you between {openHour}:00 and {closeHour}:00.
@@ -130,6 +129,14 @@ function Footer() {
         <button className="btn">Order</button>
       </div>
     </footer>
+  );
+}
+
+function Order({ closeHour }) {
+  return (
+    <div>
+      <p>We're open until {closeHour}:00. Come visit us and order online.</p>
+    </div>
   );
 }
 
